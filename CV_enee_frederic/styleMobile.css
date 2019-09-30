@@ -1,0 +1,24 @@
+
+/*Feuille de style pour formating pour une taille d'écran inférieure à 756px. Format type : cellphone ou petite tablette.*/
+@media only screen and (max-width: 775px) {  
+	.blocktext {
+		line-height: 10px;
+	}
+	.infos{
+		display: none;
+	}
+	.sideText,.comp, .exp, .formations, .autoformations {
+    border-top: 5px solid black;
+	}
+	.banniere, .banniere *{
+		background-color: red;
+	}	
+	.center *{
+		padding : none;
+		margin: none;
+	}
+	ul li {
+		padding : 0px;
+		margin-left: 35px;
+	}
+}

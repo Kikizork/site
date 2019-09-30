@@ -1,0 +1,56 @@
+/*Feuille de style pour formating sans condition de dimension écran*/
+* {
+	font-family : arial;
+	font-size : 1em;
+}
+body {
+	border-radius: 30px;
+	margin: 0px;
+    margin-top: 2%;
+	margin-bottom: 2%;
+	margin-left: 8%;
+	margin-right: 8%;
+	border-radius: 30px;
+	background-color: grey;
+}
+body *{
+	background-color: white;
+}
+.blockText {
+	border-radius: 20px;
+}
+h1 {
+	text-align : center;
+	font-size : 3em;
+}
+h2 {
+	font-size : 2em;
+	margin-left: 15px;
+	display: inline;
+}
+ul {
+	list-style-type: none;
+}
+.pdf {
+	width: 60px;
+	margin-left: 35px;
+}
+.mail, .map, .tel, .cake {
+	width : 25px;
+	display: inline;
+	margin-right : 10px;
+}
+.avatar {
+		display: block;
+	    margin-left: auto;
+		margin-right: auto;
+	    width: 50%;
+	}
+.anglais {
+	display: inline-block;
+	width: 160px;
+}
+.star {
+	display: inline-block;
+}
+

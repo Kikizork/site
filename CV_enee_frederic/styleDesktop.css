@@ -1,0 +1,49 @@
+
+/*Feuille de style pour formating pour une taille d'écran supérieure à 756px. Format type : tablette, desktop*/
+@media only screen and (min-width: 756px) {
+	.blockText {
+		display: flex;
+		margin: 0.5em;
+		padding: 0.5em;
+	}
+	.side {
+		display: flex;
+		flex-direction: column;
+		width : 40%;
+		margin: 0px;
+		float: left;
+		margin-left: 5%;
+		margin-right: 2%;
+		background-color: lightblue;
+		box-shadow: 5px 5px;
+	}
+	.side * {
+		background-color: lightblue;
+	}
+	.side p {
+		margin-top: 50px;
+	}
+	.center {
+		float: right;
+		margin-left: 0%;
+		margin-right: 5%;
+	}
+	.center *{
+		display:flex;
+		flex-direction: column;
+	}
+	ul li {
+		margin-left: 35px;
+	}
+	.exp, .formations, .autoformations {
+		border-top: 5px solid black;
+	}
+	.center  li {
+		border-top: 2px dashed black;
+		margin-top: 10px;
+		padding-top: 5px;
+	}
+	li:first-child {
+		border-top: none;
+	}
+}
