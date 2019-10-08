@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+
+<style>  
+
+    body {
+        background-image: url("https://www.thefamouspeople.com/profiles/images/julius-caesar-4.jpg");
+        background-repeat: no-repeat;     
+    }
+    #result {
+        font-family : 'Times New Roman', Times, serif;
+    }
+</style>
+<body>
+    
+        Entrez la clé de cryptage, 1 lettre (a=1, b=2 ... z=26) :<br />
+        <input type="text" maxlength="1" id="clef" />
+        <br />Entrez le text à crypter :<br />
+        <textarea type="textarea" id="texte" rows="20" cols="30">Saisisez votre texte !</textarea>
+        <br /><button type="button" onclick="main()">Crypter !</button> <button type="button" onclick="main2()">Decrypter !</button>
+        <p id="result"></p>
+</body>
+</html>
+
+<script>
+
+    function getInput(nom) {
+        return document.getElementById(nom).value;
+    }
+   
+    function main() {
+        var crypt = getInput("clef");
+        crypt = crypt.toLowerCase(0);
+        var cryptAscii = crypt[0].charCodeAt();
+        var temp;
+        var text_crypt = "";
+        var text = getInput("texte");
+        if (cryptAscii < 97 || cryptAscii > 122) {
+            alert("Vous n'avez pas rentré une LETTRE pour le cryptage");
+        }
+        cryptAscii -= 96;
+        console.log(crypt, text, cryptAscii);
+        for (i = 0; i < text.length; i++) {
+            if (text[i].toLowerCase() != text[i].toUpperCase()) {
+                if (text[i].charCodeAt() > 90) {
+                    temp = (((text[i].charCodeAt() + cryptAscii - 97) % 26) + 97);
+                    text_crypt += String.fromCharCode(temp);
+                }
+                else {                 
+                    temp = (((text[i].charCodeAt() + cryptAscii - 65) % 26) + 65);
+                    text_crypt += String.fromCharCode(temp);
+                }
+            }
+            else {
+                text_crypt += text[i];
+            }
+        }
+        document.getElementById("result").innerHTML = "Le text crypté est : " + text_crypt;       
+        }
+    function main2() {
+        var crypt = getInput("clef");
+        crypt = crypt.toLowerCase(0);
+        var cryptAscii = crypt[0].charCodeAt();
+        var temp;
+        var text_crypt = "";
+        var text = getInput("texte");
+        if (cryptAscii < 97 || cryptAscii > 122) {
+            alert("Vous n'avez pas rentré une LETTRE pour le cryptage");
+        }
+        cryptAscii -= 96;
+        console.log(crypt, text, cryptAscii);
+        for (i = 0; i < text.length; i++) {
+            if (text[i].toLowerCase() != text[i].toUpperCase()) {
+                if (text[i].charCodeAt() > 90) {
+                    temp = (((text[i].charCodeAt() - cryptAscii - 97) % 26) + 97);
+                    text_crypt += String.fromCharCode(temp);
+                }
+                else {                 
+                    temp = (((text[i].charCodeAt() - cryptAscii - 65) % 26) + 65);
+                    text_crypt += String.fromCharCode(temp);
+                }
+            }
+            else {
+                text_crypt += text[i];
+            }
+        }
+        document.getElementById("result").innerHTML = "Le text decrypté est : " + text_crypt;       
+    }
+    
+</script>
