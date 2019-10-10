@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Eval JS/Frédéric Enée</title>
+</head>
+
+<body>
+
+</body>
+<script type="text/javascript">
+
+    /* ACTION : Retourne un nombre aléatoire entre min et max
+    *  PRE-REQUIS : max > min
+    */
+    function donneNombreAleatoire(min, max) {
+        var delta = max - min;
+        return Math.round(Math.random() * delta) + min;
+    }
+
+    function saisieTableau() {
+        var tableau = [];
+        var nombre = parseInt(prompt("Un nombre entier positif stp"));
+        while (nombre > -1) {
+            tableau.push(nombre);
+            nombre = parseInt(prompt("Un nombre entier positif stp"));
+        }
+        return tableau;
+    }
+
+    /* ACTION : Retourne un tableau généré aléatoirement contenant nb chiffre aleatoire compris
+    * 			entre 1 et 49
+    *  PRE-REQUIS : nb > 0
+    *  Option : Ne pas mettre deux fois le même nombre dans le tableau
+    */
+
+    /*IMPORTANT : PRE-REQUIS : min =1  et max =49 pour répondre à l'exercice, mais je préfere comme ça*/
+
+    function genereTableauAleatoirement(nb, min, max) {
+        var result = [];
+        var temp;
+        let i = 0;
+        while (i < nb) {
+            temp = donneNombreAleatoire(min, max);
+            if (existe(result, temp) == false) {
+                result.push(temp);
+                i++;
+            }
+        }
+        return result;
+    }
+
+    /* ACTION : Retourne vrai si la valeur element existe dans le tableau tab, faux sinon
+    *  PRE-REQUIS : aucun
+    */
+    function existe(tab, element) {
+        for (let i = 0; i < tab.length; i++) {
+            if (tab[i] == element) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /* ACTION : Compare les deux tableau et retourne le nombre d'element en commun
+    *  PRE-REQUIS : On considère que Tab1 et Tab2 ne possèdent pas de doublons
+    *  METHODE : On peut utiliser la fonction existe
+    */
+    /* J'avais pas envie d'utiliser la fonction existe */
+    function compare(tab1, tab2) {
+        var count = 0;
+        var check;
+        for (let i = 0; i < tab1.length; i++) {
+            check = true;
+            while (check == true) {
+                if (existe(tab2, tab1[i]) == true) {
+                    count++;
+                    check = false;
+                }
+            }
+        }
+        return count;
+    }
+
+    /* ACTION : Ecrire une fonction qui retourne l'aire du cercle
+    *  PRE-REQUIS : aucun
+    *  METHODE : PI*R²
+    */
+    function power(nbr) {
+        return nbr * nbr;
+    }
+    function aire(rayon) {
+        return (power(rayon) * Math.PI);
+    }
+
+    /* ACTION : Ecrire une fonction qui retourne le périmètre du cercle
+    *  PRE-REQUIS : aucun
+    *  METHODE : 2*PI*R
+    */
+    function perimetre(rayon) {
+        return 2 * Math.PI * rayon;
+    }
+
+
+    /* ACTION : Ecrire une fonction qui retourne l'imc indice de masse corporel
+    *  PRE-REQUIS : taille > 0
+    *  METHODE : poid / taille²
+    */
+    function imc(poids, taille) {
+        return (poids / power(taille));
+    }
+
+
+    /*
+    * ACTION : Le programme principal
+    *	1) Demande à l'utilisateur son nom
+    *	2) Demande de saisir un chiffre N
+    *	3) Génère un tableau de TAB de N chiffre (rayons de cercle)
+    *	4) Demande de saisir un chiffre N2
+    *   5) Vérifie si le chiffre N2 existe dans le tableau
+    *   6) A partir de TAB générer un tableau TAB2 avec le périmètre des cercles (Bonus secret)
+    *   7) A partir de TAB générer un tableau TAB3 avec les aires des cercles (Bonus secret)
+    *
+    */
+    function principal() {
+        var name = prompt("Bonjour quel est ton nom ?");
+        var nbr = prompt("Un nombre entier positif stp");
+        var tab1 = genereTableauAleatoirement(nbr, 1, 49);
+        var nbr2 = prompt("Un autre nombre entier positif stp");
+        if (existe(tab1, nbr2) == true) {
+            console.log("ce nombre existe déjà dans mon tableau");
+        }
+        var tab2 = genereTableauTransforme(tab1, aire);
+        var tab3 = genereTableauTransforme(tab1, perimetre);
+        console.log(tab1, tab2, tab3);
+    }
+
+    function genereTableauTransforme(tab1, call) {
+        var result = [];
+        var temp;
+        for (let i = 0; i < tab1.length; i++) {
+            temp = call(tab1[i]);
+            result.push(temp);
+        }
+        return result;
+    }
+    principal();
+</script>
+</html>

@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<style>
+    #tableau{
+        margin-top : 10%;
+        margin-left: 40%;
+    }
+    .circle {
+        width: 2%;
+        border: 1px solid black;
+        padding: 10px;
+        border-radius:100%;
+        background-color: white;
+    }
+</style>
+<body>
+    <div id="toolbar">
+        <button id="taille" onclick="tableCreate()">Taille</button>
+        <button>Couleurs</button>
+        <button>Reset</button>
+    </div>
+    <div id="tableau"></div>
+</body>
+</html>
+<script type="text/javascript">
+
+    function tableCreate() {
+        var nbr = prompt("De quelle taille sera votre grille ? (entre 5 et 29)")
+        if (nbr < 5 || nbr > 29) {
+            alert("chiffre non compris entre 5 et 29");
+            return 1;
+        }
+        while (tableau.hasChildNodes()) {
+            tableau.removeChild(tableau.lastChild);
+        }
+        var t = document.getElementById("tableau");
+        var tbl = document.createElement("table");
+        var tblBody = document.createElement("tbody");
+        for (let i = 0; i < nbr; i++) {
+    
+            var row = document.createElement("tr");
+
+                for (var j = 0; j < nbr; j++) {
+                    var cell = document.createElement("td");
+                    var cellCircle = document.createElement("div");
+                    cellCircle.classList.add("circle");  
+                    cellCircle.id = "circle" + i + j;
+                    cellCircle.setAttribute("onclick", "changeColor(circle"+i+j+")");
+                    cell.appendChild(cellCircle);
+                    row.appendChild(cell);
+                    
+                }
+             tblBody.appendChild(row);
+         }
+         tbl.appendChild(tblBody);
+         tableau.appendChild(tbl); 
+        tbl.setAttribute("border", "10", "center");
+      console.log(cellCircle);
+        }
+    function changeColor(id) {
+        var temp = id;
+        console.log(temp);
+        var target = document.getElementById("circle00");
+        if (target.style.backgroundColor == "blue") {
+                target.style.backgroundColor = "white";
+            }
+            else {
+                target.style.backgroundColor = "blue";
+            }
+              
+    }
+
+    
+
+</script>
