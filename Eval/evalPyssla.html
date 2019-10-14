@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -8,26 +8,50 @@
 <style>
     #tableau{
         margin-top : 10%;
-        margin-left: 40%;
+        margin-left: 15%;
     }
-    .circle {
+    #couleur{
+        display: none;
+    }
+    .circle{
         width: 2%;
-        border: 1px solid black;
+        border:  1px solid black;
         padding: 10px;
         border-radius:100%;
         background-color: white;
     }
+    #colorDropdown{
+        display : none;
+    }
+    #couleur{
+        display : inline-block;
+    }
+
+
 </style>
 <body>
     <div id="toolbar">
         <button id="taille" onclick="tableCreate()">Taille</button>
-        <button>Couleurs</button>
-        <button>Reset</button>
+        <button id="couleur" onclick="showDropdown(colorDropdown)">Couleurs</button>       
+        <button id="reset" onclick="reset()">Reset</button>
     </div>
+    <div id="colorDropdown">
+        <button onclick="choix = switchColor(0)">Blanc</button>
+        <button onclick="choix = switchColor(1)">Noir</button>
+        <button onclick="choix = switchColor(2)">Bleu</button>
+        <button onclick="choix = switchColor(3)">Rouge</button>
+        <button onclick="choix = switchColor(4)">Jaune</button>
+        <button onclick="choix = switchColor(5)">Rose</button>
+        <button onclick="choix = switchColor(6)">Orange</button>
+        <button onclick="choix = switchColor(7)">Vert</button>
+        <button onclick="choix = switchColor(8)">Violet</button>
+    </div>
+    
     <div id="tableau"></div>
 </body>
 </html>
 <script type="text/javascript">
+    var choix = "white";
 
     function tableCreate() {
         var nbr = prompt("De quelle taille sera votre grille ? (entre 5 et 29)")
@@ -42,39 +66,85 @@
         var tbl = document.createElement("table");
         var tblBody = document.createElement("tbody");
         for (let i = 0; i < nbr; i++) {
-    
             var row = document.createElement("tr");
-
                 for (var j = 0; j < nbr; j++) {
                     var cell = document.createElement("td");
                     var cellCircle = document.createElement("div");
                     cellCircle.classList.add("circle");  
-                    cellCircle.id = "circle" + i + j;
-                    cellCircle.setAttribute("onclick", "changeColor(circle"+i+j+")");
+                    var id_circle = "circle" + i + j;
+                    cellCircle.id = id_circle;
+                    cellCircle.setAttribute("onclick", "changeColor(" + id_circle + ")");
                     cell.appendChild(cellCircle);
-                    row.appendChild(cell);
-                    
+                    row.appendChild(cell);                    
                 }
              tblBody.appendChild(row);
          }
          tbl.appendChild(tblBody);
          tableau.appendChild(tbl); 
         tbl.setAttribute("border", "10", "center");
-      console.log(cellCircle);
-        }
-    function changeColor(id) {
-        var temp = id;
-        console.log(temp);
-        var target = document.getElementById("circle00");
-        if (target.style.backgroundColor == "blue") {
-                target.style.backgroundColor = "white";
-            }
-            else {
-                target.style.backgroundColor = "blue";
-            }
-              
     }
 
-    
-
+    function showDropdown(id) {
+        if (id.style.display == "none") {
+            id.style.display = "inline-block";
+        }
+        else {
+            id.style.display = "none";
+        }
+    }
+    function changeColor(id) {           
+        if (id.style.backgroundColor ==  choix){
+                id.style.backgroundColor = "white";
+            }
+            else {
+                id.style.backgroundColor = choix;
+            }            
+    } 
+    function switchColor(nbr) {
+        switch (nbr){
+            case 0:
+                couleur.style.color = "white";
+                return "white";
+                break;
+            case 1: 
+                couleur.style.color = "black";
+                return "black";
+                break;
+            case 2: 
+                couleur.style.color = "blue";
+                return "blue";
+                break;
+            case 3:
+                couleur.style.color = "red";
+                return "red";
+                break;
+            case 4:
+                couleur.style.color = "yellow";
+                return "yellow";
+                break;
+            case 5: 
+                couleur.style.color = "pink";
+                return "pink";
+                break;
+            case 6:
+                couleur.style.color = "orange";
+                return "orange";
+                break;
+            case 7: 
+                couleur.style.color = "green";
+                return "green";
+                break;
+            case 8: 
+                couleur.style.color = "purple";
+                return "purple";
+                break;
+        }
+        
+        }  
+    function reset() {
+        var cercles = document.getElementsByClassName("circle");
+        for (let i = 0; i < cercles.length; i++) {
+            cercles[i].style.backgroundColor = "white";
+        }
+    }
 </script>
