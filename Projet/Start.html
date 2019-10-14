@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Connection</title>
+    <link rel="stylesheet" type="text/css" href="startStyle.css" />
+    <script src="startScript.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+</head>
+<body>
+    <div id="startButton">
+    <button id="inscription" onclick="display(0)">S'inscrire</button>
+    <button id="connection" onclick="display(1)">Connection</button>
+    </div>
+    <div id="inscrDisplayed">
+        <form id="inscri">
+             <input type="text" id="login" placeholder="Nom de compte" />
+             <input type="text" id="password" placeholder="Mot de passe" />
+             <input type="text" id="password2" placeholder="Confirmez mot de passe" />
+        </form>
+        <p id="erreurInfos"></p>
+        <button id="creation" onclick="createAccount()">Créer le compte</button>
+        
+    </div>
+    <div id="connectDisplayed">
+        <form id="connect">
+            <input type="text" name="pseudo" placeholder="Nom de compte" />
+            <input type="text" name="mdp" placeholder="Mot de passe" />
+        </form>
+        <button id="connexion">Connexion</button>
+        <button id="lost">Mot de passe oublié ?</button>
+    </div>
+</body>
+</html>
+
+
+

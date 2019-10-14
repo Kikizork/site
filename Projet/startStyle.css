@@ -1,0 +1,49 @@
+html {
+	background-color : lightgrey;
+}
+html, body {
+	margin : 0%;
+	height : 100%;
+}
+body  {
+	margin-left : 20%;
+	margin-right : 20%;
+	background-color: white;
+}
+#startButton {
+	display : flex;
+	justify-content : center;
+	padding-top : 10%;
+}
+#inscription {
+	margin-right : 20%;
+}
+input {
+	display : block;
+	border-radius : 10px;
+	margin-top : 3%;
+	width : 98%;
+}
+#inscrDisplayed, #connectDisplayed{
+	display : none;
+	margin-left : 30%;
+	border : 1px solid transparent;
+	border-radius : 5px;
+	width : 40%;
+	height : 40%;
+	background-color : aliceblue;
+	margin-top : 5%;
+}
+#creation, #connexion, #lost {
+	margin-top : 20%;
+	text-align : center;
+	font-size : 1.5em;
+	width : 90%;
+	margin-left : 5%;
+	margin-right : 5%;
+	background-color : cornflowerblue;
+}
+.error {
+	border: 1px red solid;
+}
+
