@@ -1,4 +1,5 @@
 var data = 0;
+var nbrListes = 0;
 function display(id) {    
     if (id == 0) {
         $("#connectDisplayed").hide();
@@ -43,7 +44,7 @@ function connection(){
     }).done(function(d) {
         data = d;
         console.log(data);
-        convertList(d);
+        nbrListes = convertList(d);
     });
 }
 function checkPassword(p1, p2) {
@@ -103,26 +104,39 @@ function checkAccName(acc) {
 }
 function convertList (d) {
     display(2);
+    var nbrListes = Object.keys(d.todoListes).length;
     $("#listes").append($("<div></div>").attr("id", "listButton"));
     $("#listButton").append($("<button>Se d&eacuteconnecter</button>").attr("onclick", "display(3)"));
-    for (let i=0; i< Object.keys(d.todoListes).length;i++){
+    for (let i = 0; i < nbrListes; i++){
+        var temp = "liste" + i;
         $("#listes").append($("<div>").attr({"id": "liste"+i+"", "class": "liste"}));
         for (let j=0; j< Object.keys(d.todoListes[i].elements).length + 1;j++){
                 if (j==0){
-                    $("#liste"+i+"").append($("<p>"+d.todoListes[i].name+"</p>").attr("class", "listName"));
+                    $("#"+temp+"").append($("<p>"+d.todoListes[i].name+"</p>").attr("class", "listName"));
                 }
                 else {
-                    $("#liste"+i+"").append("<p>"+d.todoListes[i].elements[j-1]+"</p>");
+                    $("#" + temp + "").append("<p>"+d.todoListes[i].elements[j-1]+"<img src=\"edit.png\" id=\"edit\"></p>");
                 }
         }     
-        $("#liste"+i+"").append("<button>+</button>");   
+        $("#liste" + i + "").append($("<button>+</button>").attr({"onclick": "newElement("+temp+")", "class": "addElementButton" }));   
     }
     
-    $("#listes").append("</div>");
-    $("#listes").after($("<button>Créer une nouvelle liste</button>").attr({"onclick": "newList()", "id": "create"}));
+    $("#listes").after($("<div></div>").attr("id", "newList"));
+    $("#newList").append($("<button>Créer une nouvelle liste</button>").attr({ "onclick": "newList()", "id": "create" }));
+    $("#newList").append($("<input></input>").attr({ "type": "text", "id": "newListName", "placeholder": "Nom de la nouvelle liste" }));
+    return nbrListes;
 }
 
-function newList(){
-    $("#listes").append("<div><button>+</button></div>").attr("class", "liste");
-
+function newList() {
+    let temp = "liste" + nbrListes + "";
+    if ($("#newListName").val().length == 0) {
+        return 1;
+    }
+    $("#listes").append($("<div></div>").attr({ "id": temp, "class": "liste" }));
+    $("#"+temp+"").append($("<p>" + $("#newListName").val() + "</p>").attr("class", "listName"));
+    $("#" + temp + "").append($("<button>+</button>").attr({ "onclick": "newElement(" + temp + ")", "class": "addElementButton" })); 
+    nbrListes++;
+}
+function newElement(list) {
+    $(list).children("button").before("<p><img src=\"edit.png\" id=\"edit\"></p>");    
 }
