@@ -46,4 +46,16 @@ input {
 .error {
 	border: 1px red solid;
 }
-
+.liste *{
+	border: 1px black solid;
+	background-color: lightgrey;
+}
+.liste{
+	display: inline-block;
+	border: 1px black solid;
+	margin: 20px;
+}
+.listName{
+	font-size: 1.5em;
+	font-style: bold;
+}
